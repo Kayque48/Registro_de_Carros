@@ -4,5 +4,5 @@ FROM php:8.0-apache
 # Instala a extensão mysqli
 RUN docker-php-ext-install mysqli
 
-# Ativa mod_rewrite do Apache (opcional)
+# Ativa mod_rewrite do Apache
 RUN a2enmod rewrite

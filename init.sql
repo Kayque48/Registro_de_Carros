@@ -1,0 +1,21 @@
+USE registro_carros;
+
+CREATE TABLE IF NOT EXISTS carros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR(100) NOT NULL,
+    modelo VARCHAR(100) NOT NULL,
+    ano INT NOT NULL,
+    cor VARCHAR(50) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    data_compra DATE NOT NULL,
+    observacoes TEXT,
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
