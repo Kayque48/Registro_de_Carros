@@ -1,0 +1,125 @@
+2025-11-15 15:03:45 - Nova requisição: POST
+2025-11-15 15:03:45 - Ação: login
+2025-11-15 15:03:45 - Login tentado: mateussperbonicont@gmail.com
+2025-11-15 15:03:45 - ✅ Login bem-sucedido: mateussperbonicont@gmail.com
+2025-11-15 16:54:44 - Nova requisição: POST
+2025-11-15 16:54:44 - Ação: criar
+2025-11-15 16:54:44 - Criando usuário: Perboni@gmail.com
+2025-11-15 16:54:44 - ✅ Usuário criado com sucesso: Perboni@gmail.com
+2025-11-15 16:55:00 - Nova requisição: POST
+2025-11-15 16:55:00 - Ação: login
+2025-11-15 16:55:00 - Login tentado: Perboni@gmail.com
+2025-11-15 16:55:00 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 16:55:04 - Nova requisição: POST
+2025-11-15 16:55:04 - Ação: login
+2025-11-15 16:55:04 - Login tentado: Perboni@gmail.com
+2025-11-15 16:55:04 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 16:55:04 - Nova requisição: POST
+2025-11-15 16:55:04 - Ação: login
+2025-11-15 16:55:04 - Login tentado: Perboni@gmail.com
+2025-11-15 16:55:04 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 16:55:04 - Nova requisição: POST
+2025-11-15 16:55:04 - Ação: login
+2025-11-15 16:55:04 - Login tentado: Perboni@gmail.com
+2025-11-15 16:55:04 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 16:55:04 - Nova requisição: POST
+2025-11-15 16:55:04 - Ação: login
+2025-11-15 16:55:04 - Login tentado: Perboni@gmail.com
+2025-11-15 16:55:05 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 16:55:05 - Nova requisição: POST
+2025-11-15 16:55:05 - Ação: login
+2025-11-15 16:55:05 - Login tentado: Perboni@gmail.com
+2025-11-15 16:55:05 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 16:55:05 - Nova requisição: POST
+2025-11-15 16:55:05 - Ação: login
+2025-11-15 16:55:05 - Login tentado: Perboni@gmail.com
+2025-11-15 16:55:05 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 17:03:12 - Nova requisição: POST
+2025-11-15 17:03:12 - Ação: login
+2025-11-15 17:03:12 - Login tentado: Perboni@gmail.com
+2025-11-15 17:03:12 - ✅ Login bem-sucedido: Perboni@gmail.com
+2025-11-15 17:05:31 - Nova requisição: POST
+2025-11-15 17:05:31 - Ação: logout
+2025-11-15 17:05:31 - Logout solicitado
+2025-11-15 17:05:39 - Nova requisição: POST
+2025-11-15 17:05:39 - Ação: login
+2025-11-15 17:05:39 - Login tentado: mateussperbonicont@gmail.com
+2025-11-15 17:06:04 - Nova requisição: POST
+2025-11-15 17:06:04 - Ação: login
+2025-11-15 17:06:04 - Login tentado: Perboni@gmail.com
+2025-11-15 17:09:22 - Nova requisição: POST
+2025-11-15 17:09:22 - Ação: logout
+2025-11-15 17:09:22 - Logout solicitado
+2025-11-15 17:14:49 - Nova requisição: POST
+2025-11-15 17:14:49 - Ação: login
+2025-11-15 17:14:49 - Login tentado: mateussperbonicont@gmail.com
+2025-11-15 17:15:19 - Nova requisição: POST
+2025-11-15 17:15:19 - Ação: verificar_email
+2025-11-15 17:15:24 - Nova requisição: POST
+2025-11-15 17:15:24 - Ação: criar
+2025-11-15 17:15:24 - Criando usuário: mateussperbonicont@gmail.com
+2025-11-15 17:15:26 - Nova requisição: POST
+2025-11-15 17:15:26 - Ação: criar
+2025-11-15 17:15:26 - Criando usuário: mateussperbonicont@gmail.com
+2025-11-15 17:15:28 - Nova requisição: POST
+2025-11-15 17:15:28 - Ação: criar
+2025-11-15 17:15:28 - Criando usuário: mateussperbonicont@gmail.com
+2025-11-15 17:34:18 - Nova requisição: POST
+2025-11-15 17:34:18 - Ação: login
+2025-11-15 17:34:18 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:20 - Nova requisição: POST
+2025-11-15 17:34:20 - Ação: login
+2025-11-15 17:34:20 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:20 - Nova requisição: POST
+2025-11-15 17:34:20 - Ação: login
+2025-11-15 17:34:20 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:20 - Nova requisição: POST
+2025-11-15 17:34:20 - Ação: login
+2025-11-15 17:34:20 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:21 - Nova requisição: POST
+2025-11-15 17:34:21 - Ação: login
+2025-11-15 17:34:21 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:21 - Nova requisição: POST
+2025-11-15 17:34:21 - Ação: login
+2025-11-15 17:34:21 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:21 - Nova requisição: POST
+2025-11-15 17:34:21 - Ação: login
+2025-11-15 17:34:21 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:21 - Nova requisição: POST
+2025-11-15 17:34:21 - Ação: login
+2025-11-15 17:34:21 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:21 - Nova requisição: POST
+2025-11-15 17:34:21 - Ação: login
+2025-11-15 17:34:21 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:22 - Nova requisição: POST
+2025-11-15 17:34:22 - Ação: login
+2025-11-15 17:34:22 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:22 - Nova requisição: POST
+2025-11-15 17:34:22 - Ação: login
+2025-11-15 17:34:22 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:22 - Nova requisição: POST
+2025-11-15 17:34:22 - Ação: login
+2025-11-15 17:34:22 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:22 - Nova requisição: POST
+2025-11-15 17:34:22 - Ação: login
+2025-11-15 17:34:22 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:23 - Nova requisição: POST
+2025-11-15 17:34:23 - Ação: login
+2025-11-15 17:34:23 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:23 - Nova requisição: POST
+2025-11-15 17:34:23 - Ação: login
+2025-11-15 17:34:23 - Login tentado: Perboni@gmail.com
+2025-11-15 17:34:23 - Nova requisição: POST
+2025-11-15 17:34:23 - Ação: login
+2025-11-15 17:34:23 - Login tentado: Perboni@gmail.com
+2025-11-15 18:34:28 - Nova requisição: POST
+2025-11-15 18:34:28 - Ação: login
+2025-11-15 18:34:28 - Login tentado: mateussperbonicont@gmail.com
+2025-11-16 13:49:13 - Nova requisição: POST
+2025-11-16 13:49:13 - Ação: verificar_email
+2025-11-16 13:49:24 - Nova requisição: POST
+2025-11-16 13:49:24 - Ação: login
+2025-11-16 13:49:24 - Login tentado: Perboni@gmail.com
+2025-11-16 13:52:03 - Nova requisição: POST
+2025-11-16 13:52:03 - Ação: login
+2025-11-16 13:52:03 - Login tentado: Perboni@gmail.com
