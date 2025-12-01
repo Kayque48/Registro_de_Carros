@@ -1,0 +1,109 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_IMAGE = 'php-apache-app'
+        DOCKER_TAG = "${BUILD_NUMBER}"
+        MYSQL_ROOT_PASSWORD = 'BoiDataBase'
+        MYSQL_DATABASE = 'registro_carros'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Clonando repositório...'
+                checkout scm
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                echo 'Construindo imagem Docker...'
+                script {
+                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
+                    docker.build("${DOCKER_IMAGE}:latest")
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                echo 'Executando testes...'
+                script {
+                    // Inicia container de teste
+                    sh '''
+                        docker run -d --name test-mysql \
+                            -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
+                            -e MYSQL_DATABASE=${MYSQL_DATABASE} \
+                            mysql:8.0
+                        
+                        # Aguarda MySQL iniciar
+                        sleep 20
+                        
+                        # Testa se o MySQL está respondendo
+                        docker exec test-mysql mysqladmin ping -h localhost -p${MYSQL_ROOT_PASSWORD}
+                        
+                        # Limpa
+                        docker stop test-mysql
+                        docker rm test-mysql
+                    '''
+                }
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                echo 'Fazendo deploy da aplicação...'
+                script {
+                    sh '''
+                        # Para containers antigos
+                        docker-compose down || true
+                        
+                        # Inicia nova versão
+                        docker-compose up -d --build
+                        
+                        # Aguarda serviços iniciarem
+                        sleep 10
+                        
+                        # Verifica se aplicação está rodando
+                        curl -f http://localhost:8080 || exit 1
+                    '''
+                }
+            }
+        }
+        
+        stage('Health Check') {
+            steps {
+                echo 'Verificando saúde da aplicação...'
+                script {
+                    sh '''
+                        # Verifica PHP/Apache
+                        docker ps | grep php-apache
+                        
+                        # Verifica MySQL
+                        docker ps | grep mysql
+                        
+                        # Testa conectividade
+                        curl -f http://localhost:8080 || exit 1
+                    '''
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo '✅ Pipeline executado com sucesso!'
+            // Aqui você pode adicionar notificações (Slack, email, etc)
+        }
+        failure {
+            echo '❌ Pipeline falhou!'
+            // Rollback automático se necessário
+            sh 'docker-compose down || true'
+        }
+        always {
+            echo 'Limpando recursos temporários...'
+            sh 'docker system prune -f || true'
+        }
+    }
+}

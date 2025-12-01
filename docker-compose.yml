@@ -1,5 +1,7 @@
 version: '3.8'
+
 services:
+  # Seu aplicativo PHP/Apache existente
   php_apache_environment:
     container_name: php-apache
     build:
@@ -11,11 +13,13 @@ services:
       - "8080:80"
     depends_on:
       db:
-        condition: service_healthy  # Isso já faz o PHP esperar o MySQL
+        condition: service_healthy
     networks:
       - app-network
-    restart: on-failure  # Reinicia se falhar
+      - jenkins  # Permite comunicação com Jenkins
+    restart: on-failure
       
+  # Seu banco MySQL existente
   db:
     image: mysql:8.0
     container_name: mysql
@@ -38,9 +42,56 @@ services:
     networks:
       - app-network
 
+  # Docker-in-Docker para Jenkins executar builds
+  jenkins-docker:
+    image: docker:dind
+    container_name: jenkins-docker
+    privileged: true
+    networks:
+      jenkins:
+        aliases:
+          - docker
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+    ports:
+      - "2376:2376"
+    command: --storage-driver overlay2
+    restart: unless-stopped
+
+  # Jenkins customizado com Docker CLI e plugins
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
+    container_name: jenkins-blueocean
+    networks:
+      - jenkins
+      - app-network  # Permite acesso aos containers da aplicação
+    environment:
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client:ro
+      - /var/run/docker.sock:/var/run/docker.sock  # Acesso ao Docker do host
+    ports:
+      - "8081:8080"  # Porta 8081 para não conflitar com seu app
+      - "50000:50000"
+    depends_on:
+      - jenkins-docker
+    restart: unless-stopped
+
 networks:
   app-network:
+    driver: bridge
+  jenkins:
     driver: bridge
 
 volumes:
   db_data:
+  jenkins-docker-certs:
+  jenkins-data:
