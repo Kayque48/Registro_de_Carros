@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  # Seu aplicativo PHP/Apache existente
   php_apache_environment:
     container_name: php-apache
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile.app
     volumes:
-      - ./:/var/www/html
+      - ./public:/var/www/html
+      - ./backend:/var/www/html/backend
     ports:
       - "8080:80"
     depends_on:
@@ -16,10 +16,11 @@ services:
         condition: service_healthy
     networks:
       - app-network
-      - jenkins  # Permite comunicação com Jenkins
+      - jenkins
+    environment:
+      - TZ=America/Sao_Paulo
     restart: on-failure
-      
-  # Seu banco MySQL existente
+
   db:
     image: mysql:8.0
     container_name: mysql
@@ -28,11 +29,12 @@ services:
       MYSQL_ROOT_PASSWORD: BoiDataBase
       MYSQL_DATABASE: registro_carros
       MYSQL_PASSWORD: BoiDataBase
+      TZ: America/Sao_Paulo
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/database/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pBoiDataBase"]
       timeout: 20s
@@ -42,56 +44,36 @@ services:
     networks:
       - app-network
 
-  # Docker-in-Docker para Jenkins executar builds
-  jenkins-docker:
-    image: docker:dind
-    container_name: jenkins-docker
-    privileged: true
-    networks:
-      jenkins:
-        aliases:
-          - docker
-    environment:
-      - DOCKER_TLS_CERTDIR=/certs
-    volumes:
-      - jenkins-docker-certs:/certs/client
-      - jenkins-data:/var/jenkins_home
-    ports:
-      - "2376:2376"
-    command: --storage-driver overlay2
-    restart: unless-stopped
-
-  # Jenkins customizado com Docker CLI e plugins
   jenkins:
     build:
       context: .
-      dockerfile: Dockerfile.jenkins
+      dockerfile: docker/Dockerfile.jenkins
     container_name: jenkins-blueocean
     networks:
       - jenkins
-      - app-network  # Permite acesso aos containers da aplicação
+      - app-network
     environment:
-      - DOCKER_HOST=tcp://docker:2376
-      - DOCKER_CERT_PATH=/certs/client
-      - DOCKER_TLS_VERIFY=1
+      - JAVA_OPTS=-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true
+      - TZ=America/Sao_Paulo
     volumes:
       - jenkins-data:/var/jenkins_home
-      - jenkins-docker-certs:/certs/client:ro
-      - /var/run/docker.sock:/var/run/docker.sock  # Acesso ao Docker do host
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/home/project
     ports:
-      - "8081:8080"  # Porta 8081 para não conflitar com seu app
+      - "8081:8080"
       - "50000:50000"
-    depends_on:
-      - jenkins-docker
     restart: unless-stopped
 
 networks:
   app-network:
+    name: app-network
     driver: bridge
   jenkins:
+    name: jenkins
     driver: bridge
 
 volumes:
   db_data:
-  jenkins-docker-certs:
+    name: mysql-data
   jenkins-data:
+    name: jenkins-data

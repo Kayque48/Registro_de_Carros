@@ -1,0 +1,9 @@
+FROM jenkins/jenkins:2.462-jdk17
+
+USER root 
+
+RUN apt-get update && apt-get install -y lsb-release
+
+USER jenkins 
+
+RUN jenkins-plugin-cli --plugins "blueocean:1.27.8 docker-workflow:572.v950f58993843"
